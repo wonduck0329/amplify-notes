@@ -7,6 +7,7 @@ import {
 import { useState } from "react";
 
 import { withAuthenticator } from "@aws-amplify/ui-react";
+import { DataStore } from "aws-amplify";
 
 function App({ signOut }) {
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -23,7 +24,10 @@ function App({ signOut }) {
             onClick: () => setShowCreateModal(true),
           },
           Jobs: {
-            onClick: () => signOut(),
+            onClick: async () => {
+              signOut();
+              await DataStore.clear();
+            },
           },
         }}
       />
