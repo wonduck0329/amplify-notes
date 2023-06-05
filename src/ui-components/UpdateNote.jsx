@@ -13,6 +13,7 @@ import {
   useStateMutationAction,
 } from "@aws-amplify/ui-react/internal";
 import { schema } from "../models/schema";
+import { useEffect } from "react";
 import {
   Button,
   Divider,
@@ -41,6 +42,22 @@ export default function UpdateNote(props) {
     },
     schema: schema,
   });
+  useEffect(() => {
+    if (
+      textFieldThreeSevenFourEightTwoEightEightZeroValue === "" &&
+      note !== undefined &&
+      note?.title !== undefined
+    )
+      setTextFieldThreeSevenFourEightTwoEightEightZeroValue(note?.title);
+  }, [note]);
+  useEffect(() => {
+    if (
+      textFieldThreeSevenFourEightTwoEightEightOneValue === "" &&
+      note !== undefined &&
+      note?.text !== undefined
+    )
+      setTextFieldThreeSevenFourEightTwoEightEightOneValue(note?.text);
+  }, [note]);
   return (
     <Flex
       gap="16px"
