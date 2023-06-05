@@ -6,7 +6,9 @@ import {
 } from "./ui-components";
 import { useState } from "react";
 
-function App() {
+import { withAuthenticator } from "@aws-amplify/ui-react";
+
+function App({ signOut }) {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [updateNote, setUpdateNote] = useState();
@@ -19,6 +21,9 @@ function App() {
         overrides={{
           Dashboard: {
             onClick: () => setShowCreateModal(true),
+          },
+          Jobs: {
+            onClick: () => signOut(),
           },
         }}
       />
@@ -58,4 +63,4 @@ function App() {
   );
 }
 
-export default App;
+export default withAuthenticator(App);
